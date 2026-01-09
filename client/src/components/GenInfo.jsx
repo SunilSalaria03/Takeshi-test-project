@@ -1,5 +1,5 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const GenInfo = () => {
   const data = [
@@ -50,7 +50,8 @@ const GenInfo = () => {
 
 export default GenInfo;
 
-export const Brands = () => {
+export const Brands = (props) => {
+  const { showTitle = true } = props;
   const navigate = useNavigate();
 
   const data = [
@@ -62,7 +63,7 @@ export const Brands = () => {
 
   return (
     <div className="flex flex-col items-center my-16 w-full">
-      <p className="prose prose-2xl font-bold mb-6">Top Brands</p>
+      {showTitle && <p className="prose prose-2xl font-bold mb-6">Top Brands</p>}
       <div className="flex flex-wrap justify-center">
         {data.map((elem, id) => (
           <div
@@ -89,4 +90,8 @@ export const Brands = () => {
       </div>
     </div>
   );
+};
+
+Brands.propTypes = {
+  showTitle: PropTypes.bool,
 };
